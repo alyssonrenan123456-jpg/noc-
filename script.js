@@ -1,4 +1,4 @@
-// Base de dados estruturada de mensagens do NOC UltraTelecom
+// Base de dados estruturada com as mensagens reais do NOC UltraTelecom
 const categoriesData = [
     {
         id: 'bom-dia',
@@ -6,16 +6,20 @@ const categoriesData = [
         icon: 'fa-sun',
         messages: [
             {
-                title: 'Saudação Padrão Inicial',
-                text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Como posso ajudar?'
+                title: 'Bom dia com foto de equipamentos',
+                text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
             },
             {
-                title: 'Saudação Boa Tarde',
-                text: 'Boa tarde, tudo bem? Sou Alysson do suporte técnico da UltraTelecom e estarei à disposição para atendê-lo. Como posso ajudar?'
+                title: 'Boa tarde com foto de equipamentos',
+                text: 'Boa tarde, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
             },
             {
-                title: 'Saudação Boa Noite',
-                text: 'Boa noite, tudo bem? Sou Alysson do suporte técnico da UltraTelecom e estarei à disposição para auxiliá-lo nesta noite.'
+                title: 'Boa tarde para retomar atendimento',
+                text: 'Boa tarde, tudo bem? Podemos retomar o atendimento agora? Fico à disposição.'
+            },
+            {
+                title: 'Boa noite com foto de equipamentos',
+                text: 'Boa noite, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
             }
         ]
     },
@@ -25,12 +29,16 @@ const categoriesData = [
         icon: 'fa-receipt',
         messages: [
             {
-                title: 'Solicitação de Comprovante de Pagamento',
-                text: 'Para que possamos solicitar a baixa ou verificar a regularização do seu sinal, poderia me enviar o comprovante de pagamento em formato de imagem ou PDF?'
+                title: 'Comprovante - Manhã',
+                text: 'Bom dia! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!'
             },
             {
-                title: 'Confirmação de Recebimento de Comprovante',
-                text: 'Recebi o seu comprovante por aqui. Vou encaminhar para o setor responsável para efetuar a verificação e liberação do acesso.'
+                title: 'Comprovante - Tarde',
+                text: 'Boa tarde! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!'
+            },
+            {
+                title: 'Comprovante - Noite',
+                text: 'Boa noite! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!'
             }
         ]
     },
@@ -40,12 +48,16 @@ const categoriesData = [
         icon: 'fa-clock',
         messages: [
             {
-                title: 'Prazo de Atendimento Técnico Presencial',
-                text: 'O prazo padrão para a visita da nossa equipe técnica no seu endereço é de até 24 horas úteis. Assim que o técnico estiver a caminho, entraremos em contato.'
+                title: 'Prazo 48h - Sem acesso à internet (Prioridade)',
+                text: 'Prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está sem acesso à internet no momento, o que impacta diretamente seu uso do serviço. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.'
             },
             {
-                title: 'Prazo para Liberação Financeira',
-                text: 'Após o envio do comprovante, o prazo estimado para a baixa no sistema e normalização automática do sinal é de até 2 horas em horário comercial.'
+                title: 'Prazo 48h - Instabilidade (Prioridade)',
+                text: 'O prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está enfrentando instabilidade no serviço, o que impacta diretamente seu uso da internet. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.'
+            },
+            {
+                title: 'Encaminhado para técnicos sem horário exato',
+                text: 'Assim que possível, os técnicos irão até o local, ok? No momento, não tenho acesso à agenda deles para verificar os horários disponíveis, mas já deixei registrado para que o atendimento seja feito com a maior agilidade possível.'
             }
         ]
     },
@@ -55,12 +67,16 @@ const categoriesData = [
         icon: 'fa-calendar-days',
         messages: [
             {
-                title: 'Confirmação de Visita Técnica',
-                text: 'Gostaria de confirmar o agendamento da visita técnica para o período da [MANHÃ / TARDE]. Por favor, certifique-se de que há alguém maior de idade no local para acompanhar o atendimento.'
+                title: 'Abertura de agendamento (Feminino)',
+                text: 'Estarei abrindo agora a solicitação de agendamento para a senhora, tudo certo?'
             },
             {
-                title: 'Reagendamento de Visita',
-                text: 'Identificamos que não foi possível realizar o atendimento no período anterior. Qual seria a melhor data e período (manhã ou tarde) para remarcarmos?'
+                title: 'Abertura de agendamento (Masculino)',
+                text: 'Estarei abrindo agora a solicitação de agendamento para o senhor, tudo certo?'
+            },
+            {
+                title: 'Transferência para Controladoria',
+                text: 'Vou estar transferindo você para o setor da Controladoria, assim podem verificar um horário para a visita.'
             }
         ]
     },
@@ -70,8 +86,16 @@ const categoriesData = [
         icon: 'fa-percent',
         messages: [
             {
-                title: 'Esclarecimento sobre Reajuste Anual',
-                text: 'O reajuste anual aplicado na sua fatura segue as diretrizes do contrato de prestação de serviços e é baseado na variação do índice oficial de inflação (IGP-M/IPCA), garantindo a manutenção da qualidade da nossa rede.'
+                title: 'Explicação sobre reajuste e custos',
+                text: 'Devido ao aumento bastante significativo nos custos de prestação de serviços e produtos que vem acontecendo em nosso setor, e para continuar mantendo a qualidade na prestação de serviço da sua internet, estamos atualizando os planos que por vários anos não tiveram seus respectivos reajustes.'
+            },
+            {
+                title: 'Alternativas e planos melhores',
+                text: 'Gostaríamos que compreendesse nosso desejo de não ter que estar aplicando as taxas de correções monetárias, a qual seguramos até o último momento. Estamos à disposição até para planos maiores ou melhores, com telefone fixo, telefone móvel 5G e Aplicativos de TV.'
+            },
+            {
+                title: 'Manutenção de parceria antiga',
+                text: 'Se precisar é só me falar que faço o melhor que puder para manter essa parceria de muito tempo.'
             }
         ]
     },
@@ -81,12 +105,16 @@ const categoriesData = [
         icon: 'fa-circle-check',
         messages: [
             {
-                title: 'Encerramento de Atendimento Bem-Sucedido',
-                text: 'Fico muito feliz em ter ajudado! O seu atendimento será finalizado por aqui, mas a UltraTelecom permanece à disposição sempre que precisar. Tenha um excelente dia!'
+                title: 'Encerramento com pedido de nota (Semana)',
+                text: 'Muito obrigado pelo seu contato! Desejo a você uma ótima semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀'
             },
             {
-                title: 'Pesquisa de Satisfação',
-                text: 'Para continuarmos melhorando nossos serviços, ao finalizar o atendimento você poderá receber uma breve pesquisa sobre o suporte prestado. Agradecemos muito o seu feedback!'
+                title: 'Encerramento com pedido de nota (Fim de semana)',
+                text: 'Muito obrigado pelo seu contato! Desejo a você um ótimo final de semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀'
+            },
+            {
+                title: 'Aviso de término de expediente',
+                text: 'Estou encerrando meu expediente no momento. Retornarei amanhã a partir das 09:00 horas (Horário de Brasília) para dar continuidade ao seu atendimento. Desejo-lhe uma ótima noite e até logo! 😃'
             }
         ]
     },
@@ -96,12 +124,12 @@ const categoriesData = [
         icon: 'fa-key',
         messages: [
             {
-                title: 'Orientações para Alterar Senha do Wi-Fi',
-                text: 'Para alterar a senha do seu Wi-Fi, acesse o aplicativo do roteador ou digite o endereço de IP padrão no navegador conectado à sua rede. Recomendo utilizar uma senha forte contendo letras e números.'
+                title: 'Aviso sobre desconexão dos dispositivos',
+                text: 'Informo que, ao realizar a troca, todos os dispositivos conectados à rede serão desconectados. Após essa alteração, será necessário reconectar utilizando a nova senha.'
             },
             {
-                title: 'Suporte à Redefinição de Senha',
-                text: 'Caso tenha dificuldades para alterar a senha da rede sem fio, posso realizar a alteração por aqui para você. Qual nome (SSID) e senha você gostaria de cadastrar?'
+                title: 'Aviso de taxa por troca em menos de 60 dias',
+                text: 'Informamos que, como a troca de senha da sua rede foi realizada há menos de 60 dias (xx/xx/xx), haverá um custo de R$ 15,00 para efetuar uma nova alteração. Se desejar prosseguir, podemos realizar a alteração imediatamente.'
             }
         ]
     },
@@ -111,8 +139,8 @@ const categoriesData = [
         icon: 'fa-triangle-exclamation',
         messages: [
             {
-                title: 'Aviso de Rompimento de Fibra Óptica',
-                text: 'Identificamos um rompimento de fibra óptica na região que afeta o seu setor. Nossa equipe de redes já está em campo realizando a fusão e o reparo emergencial. A previsão de normalização é para as próximas horas.'
+                title: 'Aviso formal de rompimento de fibra',
+                text: 'Prezado(a) {{nome_cliente}},\n\nDevido a um rompimento em um dos nossos cabos principais próximo à sua região, sua conexão pode apresentar instabilidade ou interrupção.\n\nNossa equipe técnica já está ciente da situação e atuando na manutenção para a normalização dos serviços. Assim que o reparo for concluído, sua internet voltará a funcionar normalmente.\n\nAgradecemos a sua paciência e compreensão.\n\nAtenciosamente,\nEquipe UltraTelecom'
             }
         ]
     },
@@ -122,8 +150,12 @@ const categoriesData = [
         icon: 'fa-tv',
         messages: [
             {
-                title: 'Verificação de Conexão no Aplicativo de TV',
-                text: 'Para verificar o aplicativo de TV/IPTV, certifique-se de que o aparelho está conectado corretamente à internet e tente reiniciar o aplicativo ou limpar o cache nas configurações do dispositivo.'
+                title: 'Explicação sobre IPTV e teste alternativo',
+                text: 'Infelizmente não podemos prestar suporte para o seu equipamento de canais, pois o qual utiliza sinais não-oficiais de transmissão, onde podem ocorrer travamentos por conta do servidor da IPTV, e não um problema propriamente da internet. O senhor conseguiria realizar o teste em um serviço como YouTube ou Netflix, por gentileza?'
+            },
+            {
+                title: 'Detalhes técnicos sobre servidores IPTV',
+                text: 'O IPTV é como um aplicativo que pega sinais de TV de lugares que não são oficiais. Como ele não é um serviço autorizado, esses sinais não vêm de forma direta e segura. Eles ficam alternando de servidores espalhados pelo mundo. Por isso, quando chegam na sua casa, podem travar, ficar lentos ou até sair do ar. Diferente de uma TV oficial, que tem servidores fixos e estáveis, o IPTV sempre vai ter esse risco de instabilidade.'
             }
         ]
     },
@@ -133,8 +165,8 @@ const categoriesData = [
         icon: 'fa-gauge-high',
         messages: [
             {
-                title: 'Instruções para Teste de Velocidade Confiável',
-                text: 'Para realizarmos um teste de velocidade preciso, peço que conecte seu dispositivo na rede Wi-Fi 5GHz (ou via cabo de rede), feche os aplicativos em segundo plano e acesse o site oficial speedtest.net.'
+                title: 'Diferença entre Wi-Fi e Cabo no Teste',
+                text: 'Para testar corretamente a velocidade da internet, o ideal é realizar o teste em um computador conectado por cabo de rede.\n\nTestes feitos via Wi-Fi (celular ou notebook) podem sofrer variações, pois o sinal sem fio é influenciado por distância, paredes e interferências.\n\nO teste cabeado mostra a velocidade real entregue no aparelho que está sendo testado, enquanto no Wi-Fi o resultado pode ser inferior mesmo com a conexão normal.'
             }
         ]
     },
@@ -144,8 +176,20 @@ const categoriesData = [
         icon: 'fa-comment-slash',
         messages: [
             {
-                title: 'Aviso de Encerramento por Inatividade',
-                text: 'Como não houve retorno nas últimas mensagens, estou encerrando este atendimento temporariamente por inatividade. Caso ainda precise de suporte, basta nos chamar novamente. Estamos à disposição!'
+                title: 'Encerramento por inatividade',
+                text: 'Como não houve seguimento, estamos finalizando este protocolo. Se precisar de ajuda ainda, pode nos contatar, que estaremos sempre à disposição. Tenha uma ótima semana!'
+            },
+            {
+                title: 'Aviso aos 30 minutos',
+                text: 'Olá! Somente para avisar que estou no aguardo do seu retorno. Assim que conseguir realizar o procedimento, me avisa, tá bem?'
+            },
+            {
+                title: 'Aviso à 1h30',
+                text: 'Olá! Sua demanda já foi solucionada? Qualquer coisa, me avisa. Estou aqui à disposição, ok?'
+            },
+            {
+                title: 'Aviso às 3 horas (Disponibilidade)',
+                text: 'Pode me avisar o horário em que vai estar disponível para conversarmos? Ficarei no aguardo.'
             }
         ]
     },
@@ -155,8 +199,8 @@ const categoriesData = [
         icon: 'fa-network-wired',
         messages: [
             {
-                title: 'Solicitação de Print do Speedtest',
-                text: 'Poderia realizar um teste de velocidade conectado via cabo direto no roteador e nos enviar um print da tela com os resultados de Download, Upload e Ping?'
+                title: 'Instruções para acessar e printar Speedtest',
+                text: 'Acesse o site https://www.speedtest.net/pt e clique no botão "Iniciar". Quando o teste terminar, tire um print do resultado e me envie.'
             }
         ]
     },
@@ -166,12 +210,8 @@ const categoriesData = [
         icon: 'fa-signal',
         messages: [
             {
-                title: 'Solicitação de Foto dos Equipamentos',
-                text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos (ONU/Roteador) para verificarmos os LEDs indicadores?'
-            },
-            {
-                title: 'Procedimento Básico de Reinicialização',
-                text: 'Para realizarmos um teste inicial de conectividade, por favor retire a fonte de alimentação da tomada do seu roteador/ONU, aguarde 10 segundos e conecte novamente. Aguarde cerca de 2 minutos para estabilizar o sinal.'
+                title: 'Diferença entre 2.4 GHz e 5 GHz',
+                text: '• 2.4 GHz: tem alcance maior e atravessa paredes melhor, mas a velocidade é menor e sofre mais interferências.\n• 5 GHz: tem velocidade maior, ideal para vídeos e jogos online, mas o alcance é menor e perde força com obstáculos.'
             }
         ]
     }
@@ -207,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Configurar ouvintes de eventos
 function setupEventListeners() {
-    // Pesquisa Desktop
     searchInputEl.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim().toLowerCase();
         searchInputMobileEl.value = e.target.value;
@@ -215,7 +254,6 @@ function setupEventListeners() {
         renderMessages();
     });
 
-    // Pesquisa Mobile
     searchInputMobileEl.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim().toLowerCase();
         searchInputEl.value = e.target.value;
@@ -223,7 +261,6 @@ function setupEventListeners() {
         renderMessages();
     });
 
-    // Limpar busca
     clearSearchBtn.addEventListener('click', () => {
         searchInputEl.value = '';
         searchInputMobileEl.value = '';
@@ -233,7 +270,6 @@ function setupEventListeners() {
         searchInputEl.focus();
     });
 
-    // Sidebar Mobile Toggle
     sidebarToggleBtn.addEventListener('click', () => {
         sidebarEl.classList.remove('-translate-x-full');
         sidebarOverlayEl.classList.remove('hidden');
@@ -360,9 +396,11 @@ function renderMessages() {
     noResultsEl.classList.add('hidden');
 
     let html = '';
-    filteredMessages.forEach((msg, index) => {
-        // Escapar aspas para uso seguro no atributo onclick
-        const escapedText = msg.text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    filteredMessages.forEach((msg) => {
+        // Formatar quebras de linha reais para <br> na exibição visual do card
+        const formattedDisplay = msg.text.replace(/\n/g, '<br>');
+        // Texto limpo para cópia exata para a área de transferência
+        const escapedText = msg.text.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
         
         html += `
             <div class="message-card bg-dark-800/90 border border-dark-700/80 rounded-2xl p-5 flex flex-col justify-between shadow-lg relative group">
@@ -371,7 +409,7 @@ function renderMessages() {
                         <h3 class="font-semibold text-white text-base tracking-tight">${msg.title}</h3>
                         <span class="text-[10px] px-2 py-0.5 rounded-md bg-dark-700/80 text-gray-400 border border-dark-600/50 uppercase tracking-wide truncate max-w-[150px]">${msg.categoryName}</span>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed bg-dark-900/50 p-3.5 rounded-xl border border-dark-700/50 select-all mb-4 font-normal">${msg.text}</p>
+                    <p class="text-gray-300 text-sm leading-relaxed bg-dark-900/50 p-3.5 rounded-xl border border-dark-700/50 select-all mb-4 font-normal whitespace-pre-line">${msg.text}</p>
                 </div>
                 <div class="flex items-center justify-end pt-2 border-t border-dark-700/40">
                     <button onclick="copyMessage(this, '${escapedText}')" 
@@ -389,9 +427,13 @@ function renderMessages() {
 
 // Copiar mensagem para a área de transferência
 function copyMessage(buttonEl, text) {
-    // Decodificar entidades HTML básicas se houver
+    // Decodificar entidades HTML caso necessário para copiar puro
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = text;
+    const cleanText = tempDiv.textContent || tempDiv.innerText || text;
+
     const textArea = document.createElement('textarea');
-    textArea.value = text;
+    textArea.value = cleanText;
     document.body.appendChild(textArea);
     textArea.select();
     
@@ -399,7 +441,6 @@ function copyMessage(buttonEl, text) {
         document.execCommand('copy');
         showToast('Mensagem copiada para a área de transferência!');
         
-        // Alterar estado do botão temporariamente
         const originalHTML = buttonEl.innerHTML;
         buttonEl.innerHTML = `<i class="fa-solid fa-check text-white"></i> <span>✓ Copiado!</span>`;
         buttonEl.classList.remove('bg-brand-primary', 'hover:bg-brand-hover');
