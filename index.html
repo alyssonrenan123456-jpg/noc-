@@ -59,6 +59,11 @@
     </style>
 </head>
 <body class="bg-dark-950 text-gray-100 font-sans antialiased selection:bg-brand-primary selection:text-white h-screen flex flex-col overflow-hidden">
+
+    <!-- Header / Barra Superior -->
+    <header class="flex-none z-40 backdrop-blur-xl bg-dark-950/80 border-b border-white/5 transition-all">
+        <div class="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
             <!-- Logo / Título -->
             <div class="flex items-center space-x-3">
                 <button id="sidebarToggle" class="lg:hidden text-gray-400 hover:text-white p-2 rounded-xl bg-dark-900 border border-white/5 transition focus:outline-none">
@@ -77,8 +82,8 @@
                 </div>
             </div>
 
-            <!-- Barra de Pesquisa Desktop -->
-            <div class="hidden md:flex flex-1 max-w-xl mx-6" id="searchContainerWrapper">
+            <!-- Barra de Pesquisa Única (Responsiva) -->
+            <div class="flex-1 max-w-xl mx-2 sm:mx-6" id="searchContainerWrapper">
                 <div class="relative w-full">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
                         <i class="fa-solid fa-magnifying-glass text-sm"></i>
@@ -98,18 +103,6 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span class="text-xs font-medium text-gray-300">Online</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Barra de Pesquisa Mobile -->
-        <div class="md:hidden px-4 pb-4 pt-1" id="searchContainerMobileWrapper">
-            <div class="relative w-full">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
-                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
-                </span>
-                <input type="text" id="searchInputMobile" 
-                    placeholder="Buscar mensagens..." 
-                    class="w-full bg-dark-900 text-gray-200 text-sm rounded-2xl pl-11 pr-10 py-3 border border-white/10 focus:outline-none focus:border-brand-primary transition">
             </div>
         </div>
     </header>
@@ -139,7 +132,7 @@
             </div>
         </aside>
 
-        <!-- Área de Conteúdo (Mensagens ou Sistema Externo) -->
+        <!-- Área de Conteúdo -->
         <main id="mainContentArea" class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6 custom-scrollbar bg-dark-950">
             
             <div class="max-w-7xl mx-auto space-y-6 w-full" id="messagesView">
@@ -205,7 +198,7 @@
         </div>
     </div>
 
-    <!-- Script Embutido -->
+    <!-- Script Completo -->
     <script>
         const categoriesData = [
             {
@@ -345,7 +338,6 @@
         const messageCountEl = document.getElementById('messageCount');
         const noResultsEl = document.getElementById('noResults');
         const searchInputEl = document.getElementById('searchInput');
-        const searchInputMobileEl = document.getElementById('searchInputMobile');
         const clearSearchBtn = document.getElementById('clearSearch');
         const sidebarEl = document.getElementById('sidebar');
         const sidebarToggleBtn = document.getElementById('sidebarToggle');
@@ -356,8 +348,6 @@
         const messagesViewEl = document.getElementById('messagesView');
         const externalAppViewEl = document.getElementById('externalAppView');
         const externalIframeEl = document.getElementById('externalIframe');
-        const searchContainerWrapperEl = document.getElementById('searchContainerWrapper');
-        const searchContainerMobileWrapperEl = document.getElementById('searchContainerMobileWrapper');
 
         document.addEventListener('DOMContentLoaded', () => {
             renderCategories();
@@ -368,21 +358,12 @@
         function setupEventListeners() {
             searchInputEl.addEventListener('input', (e) => {
                 searchQuery = e.target.value.trim().toLowerCase();
-                searchInputMobileEl.value = e.target.value;
-                toggleClearButton();
-                renderMessages();
-            });
-
-            searchInputMobileEl.addEventListener('input', (e) => {
-                searchQuery = e.target.value.trim().toLowerCase();
-                searchInputEl.value = e.target.value;
                 toggleClearButton();
                 renderMessages();
             });
 
             clearSearchBtn.addEventListener('click', () => {
                 searchInputEl.value = '';
-                searchInputMobileEl.value = '';
                 searchQuery = '';
                 toggleClearButton();
                 renderMessages();
@@ -460,13 +441,10 @@
             currentCategory = catId;
             searchQuery = '';
             searchInputEl.value = '';
-            searchInputMobileEl.value = '';
             toggleClearButton();
             
             messagesViewEl.classList.remove('hidden');
             externalAppViewEl.classList.add('hidden');
-            searchContainerWrapperEl.style.display = 'flex';
-            searchContainerMobileWrapperEl.style.display = 'block';
 
             renderCategories();
             renderMessages();
@@ -478,9 +456,6 @@
             
             messagesViewEl.classList.add('hidden');
             externalAppViewEl.classList.remove('hidden');
-            
-            searchContainerWrapperEl.style.display = 'none';
-            searchContainerMobileWrapperEl.style.display = 'none';
 
             if (!externalIframeEl.src || externalIframeEl.src === 'about:blank') {
                 externalIframeEl.src = EXTERNAL_APP_URL;
@@ -502,7 +477,7 @@
 
             if (searchQuery) {
                 activeCategoryTitleEl.textContent = `Resultados para "${searchQuery}"`;
-                activeCategorySubtitleEl.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> Busca Global`;
+                activeCategorySubtitleEl.innerHTML = `<i class="fa-solid fa-magnifying-glass text-brand-light"></i> Busca Global`;
                 
                 categoriesData.forEach(cat => {
                     cat.messages.forEach(msg => {
@@ -514,18 +489,20 @@
             } else {
                 if (currentCategory === 'all') {
                     activeCategoryTitleEl.textContent = 'Todas as Mensagens';
-                    activeCategorySubtitleEl.innerHTML = `<i class="fa-solid fa-layer-group"></i> Visão geral de todas as respostas disponíveis`;
+                    activeCategorySubtitleEl.innerHTML = `<i class="fa-solid fa-layer-group text-brand-light"></i> Visão geral de todas as respostas disponíveis`;
                     categoriesData.forEach(cat => {
                         cat.messages.forEach(msg => {
                             filteredMessages.push({ ...msg, categoryName: cat.name, categoryId: cat.id });
                         });
                     });
                 } else {
-                    const cat = categoriesData.find(c => c.id === currentCategory);
-                    if (cat) {
-                        activeCategoryTitleEl.textContent = cat.name;
-                        activeCategorySubtitleEl.innerHTML = `<i class="fa-solid ${cat.icon}"></i> Categoria Ativa`;
-                        filteredMessages = cat.messages.map(msg => ({ ...msg, categoryName: cat.name, categoryId: cat.id }));
+                    const foundCat = categoriesData.find(c => c.id === currentCategory);
+                    if (foundCat) {
+                        activeCategoryTitleEl.textContent = foundCat.name;
+                        activeCategorySubtitleEl.innerHTML = `<i class="fa-solid ${foundCat.icon} text-brand-light"></i> Categoria selecionada`;
+                        foundCat.messages.forEach(msg => {
+                            filteredMessages.push({ ...msg, categoryName: foundCat.name, categoryId: foundCat.id });
+                        });
                     }
                 }
             }
@@ -539,86 +516,55 @@
                 return;
             }
 
-            noResultsEl.classList.remove('flex');
             noResultsEl.classList.add('hidden');
+            noResultsEl.classList.remove('flex');
 
-            let html = '';
-            filteredMessages.forEach((msg) => {
-                const escapedText = msg.text.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                
-                html += `
-                    <div class="message-card bg-dark-800/90 border border-dark-700/80 rounded-2xl p-5 flex flex-col justify-between shadow-lg relative group">
-                        <div>
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <h3 class="font-semibold text-white text-base tracking-tight">${msg.title}</h3>
-                                <span class="text-[10px] px-2 py-0.5 rounded-md bg-dark-700/80 text-gray-400 border border-dark-600/50 uppercase tracking-wide truncate max-w-[150px]">${msg.categoryName}</span>
+            let gridHtml = '';
+            filteredMessages.forEach((msg, idx) => {
+                const escapedText = msg.text.replace(/'/g, "\\'").replace(/\n/g, '\\n');
+                gridHtml += `
+                    <div class="bg-dark-900/60 backdrop-blur-md rounded-3xl p-5 border border-white/5 hover:border-brand-primary/30 transition-all flex flex-col justify-between shadow-xl group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-xl bg-brand-primary/10 text-brand-light border border-brand-primary/20 truncate">
+                                    ${msg.categoryName}
+                                </span>
+                                <span class="text-xs text-gray-500 font-mono">#${idx + 1}</span>
                             </div>
-                            <p class="text-gray-300 text-sm leading-relaxed bg-dark-900/50 p-3.5 rounded-xl border border-dark-700/50 select-all mb-4 font-normal whitespace-pre-line">${msg.text}</p>
+                            <h3 class="font-bold text-white text-base tracking-tight group-hover:text-brand-light transition">${msg.title}</h3>
+                            <p class="text-sm text-gray-300 whitespace-pre-line bg-dark-950/40 p-4 rounded-2xl border border-white/5 leading-relaxed font-normal">${msg.text}</p>
                         </div>
-                        <div class="flex items-center justify-end pt-2 border-t border-dark-700/40">
-                            <button onclick="copyMessage(this, '${escapedText}')" 
-                                class="copy-btn bg-brand-primary hover:bg-brand-hover text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition duration-150 flex items-center space-x-2 shadow-md shadow-brand-primary/20 active:scale-95">
-                                <i class="fa-solid fa-clipboard"></i>
-                                <span>Copiar mensagem</span>
+                        <div class="mt-5 pt-3 border-t border-white/5 flex items-center justify-end">
+                            <button onclick="copyMessage('${escapedText}')" 
+                                class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-hover text-white text-xs font-semibold shadow-lg shadow-brand-primary/20 transition flex items-center justify-center space-x-2 active:scale-95">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copiar Mensagem</span>
                             </button>
                         </div>
                     </div>
                 `;
             });
 
-            messagesGridEl.innerHTML = html;
+            messagesGridEl.innerHTML = gridHtml;
         }
 
-        function copyMessage(buttonEl, text) {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = text;
-            const cleanText = tempDiv.textContent || tempDiv.innerText || text;
-
-            const textArea = document.createElement('textarea');
-            textArea.value = cleanText;
-            document.body.appendChild(textArea);
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
+        function copyMessage(text) {
+            navigator.clipboard.writeText(text).then(() => {
                 showToast('Mensagem copiada para a área de transferência!');
-                
-                const originalHTML = buttonEl.innerHTML;
-                buttonEl.innerHTML = `<i class="fa-solid fa-check text-white"></i> <span>✓ Copiado!</span>`;
-                buttonEl.classList.remove('bg-brand-primary', 'hover:bg-brand-hover');
-                buttonEl.classList.add('bg-emerald-600', 'hover:bg-emerald-500');
-
-                setTimeout(() => {
-                    buttonEl.innerHTML = originalHTML;
-                    buttonEl.classList.remove('bg-emerald-600', 'hover:bg-emerald-500');
-                    buttonEl.classList.add('bg-brand-primary', 'hover:bg-brand-hover');
-                }, 2000);
-            } catch (err) {
-                console.error('Erro ao copiar texto: ', err);
-                showToast('Erro ao tentar copiar mensagem.', true);
-            }
-            
-            document.body.removeChild(textArea);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+            });
         }
 
-        let toastTimeout;
-        function showToast(message, isError = false) {
+        function showToast(message) {
             toastMessageEl.textContent = message;
-            const toastInner = toastEl.firstElementChild;
-            if (isError) {
-                toastInner.className = 'bg-rose-600 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-rose-500/50 backdrop-blur-md';
-            } else {
-                toastInner.className = 'bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-emerald-500/30';
-            }
-
             toastEl.classList.remove('translate-y-20', 'opacity-0');
             toastEl.classList.add('translate-y-0', 'opacity-100');
 
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
+            setTimeout(() => {
                 toastEl.classList.remove('translate-y-0', 'opacity-100');
                 toastEl.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
+            }, 3000);
         }
     </script>
 </body>
