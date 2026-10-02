@@ -4,17 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Sobreaviso</title>
-    <!-- Google Fonts & FontAwesome para ícones -->
+    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Estilo Glassmorphism para os Cartões Principais */
+        .main-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .location-info h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f3f4f6;
+        }
+
+        .sublocation {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Badges e Botões */
+        .badge-sobreaviso {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-gerar-mensagem {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.813rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-gerar-mensagem:hover {
+            opacity: 0.9;
+        }
+
+        /* Grelha dos Dias (Sábado / Domingo) */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .day-box {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .day-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .badge-escalado {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .day-content strong {
+            display: block;
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .day-content p {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- O cabeçalho superior que estava a vermelho foi completamente removido daqui -->
+        <!-- O cabeçalho superior foi removido -->
 
-        <!-- Lista de Cartões de Sobreaviso -->
         <div class="cards-wrapper">
 
             <!-- Cartão 1: JBA - Ibicaré -->
@@ -26,9 +167,9 @@
                     </div>
                     <div class="card-actions">
                         <span class="badge-sobreaviso">Sobreaviso: SIM</span>
-                        <button class="btn-gerar-mensagem">
+                        <a href="#" class="btn-gerar-mensagem">
                             <i class="fa-regular fa-comment-dots"></i> Gerar Mensagem
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -66,9 +207,9 @@
                     </div>
                     <div class="card-actions">
                         <span class="badge-sobreaviso">Sobreaviso: SIM</span>
-                        <button class="btn-gerar-mensagem">
+                        <a href="#" class="btn-gerar-mensagem">
                             <i class="fa-regular fa-comment-dots"></i> Gerar Mensagem
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -106,9 +247,9 @@
                     </div>
                     <div class="card-actions">
                         <span class="badge-sobreaviso">Sobreaviso: SIM</span>
-                        <button class="btn-gerar-mensagem">
+                        <a href="#" class="btn-gerar-mensagem">
                             <i class="fa-regular fa-comment-dots"></i> Gerar Mensagem
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
