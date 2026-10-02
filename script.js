@@ -6,20 +6,20 @@ const categoriesData = [
         icon: 'fa-sun',
         messages: [
             {
-                title: 'Bom dia com foto de equipamentos',
-                text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
+                title: 'Bom dia',
+                text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.'
             },
             {
-                title: 'Boa tarde com foto de equipamentos',
-                text: 'Boa tarde, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
+                title: 'Boa tarde ',
+                text: 'Boa tarde, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.'
             },
             {
                 title: 'Boa tarde para retomar atendimento',
                 text: 'Boa tarde, tudo bem? Podemos retomar o atendimento agora? Fico à disposição.'
             },
             {
-                title: 'Boa noite com foto de equipamentos',
-                text: 'Boa noite, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?'
+                title: 'Boa noite ',
+                text: 'Boa noite, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.'
             }
         ]
     },
