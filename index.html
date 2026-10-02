@@ -23,10 +23,10 @@
                     },
                     colors: {
                         brand: {
-                            primary: '#6366f1', // Indigo moderno
+                            primary: '#6366f1',
                             hover: '#4f46e5',
                             light: '#818cf8',
-                            accent: '#a855f7',  // Roxo sutil
+                            accent: '#a855f7',
                         },
                         dark: {
                             950: '#090d16',
@@ -42,11 +42,11 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark-950 text-gray-100 font-sans antialiased selection:bg-brand-primary selection:text-white min-h-screen flex flex-col">
+<body class="bg-dark-950 text-gray-100 font-sans antialiased selection:bg-brand-primary selection:text-white h-screen flex flex-col overflow-hidden">
 
-    <!-- Header / Barra Superior -->
-    <header class="sticky top-0 z-40 backdrop-blur-xl bg-dark-950/80 border-b border-white/5 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <!-- Header / Barra Superior (Fixa no topo) -->
+    <header class="flex-none z-40 backdrop-blur-xl bg-dark-950/80 border-b border-white/5 transition-all">
+        <div class="w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
             <!-- Logo / Título -->
             <div class="flex items-center space-x-3">
@@ -67,7 +67,7 @@
             </div>
 
             <!-- Barra de Pesquisa Desktop -->
-            <div class="hidden md:flex flex-1 max-w-md mx-6">
+            <div class="hidden md:flex flex-1 max-w-xl mx-6">
                 <div class="relative w-full">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
                         <i class="fa-solid fa-magnifying-glass text-sm"></i>
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <!-- Barra de Pesquisa Mobile (Visível apenas em telas menores) -->
+        <!-- Barra de Pesquisa Mobile -->
         <div class="md:hidden px-4 pb-4 pt-1">
             <div class="relative w-full">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
@@ -103,59 +103,62 @@
         </div>
     </header>
 
-    <!-- Layout Principal -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Layout Principal (Tela Inteira sem quebra de scroll geral) -->
+    <div class="flex-1 flex overflow-hidden w-full relative">
         
         <!-- Sidebar Backdrop mobile -->
         <div id="sidebarOverlay" class="fixed inset-0 bg-dark-950/80 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
 
-        <!-- Sidebar de Categorias -->
-        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-80 lg:w-auto bg-dark-950 lg:bg-transparent border-r lg:border-none border-white/5 p-6 lg:p-0 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        <!-- Sidebar de Categorias (Fixa, colada na esquerda, preenchendo até embaixo) -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-80 lg:w-80 bg-dark-950 lg:bg-dark-950/40 border-r border-white/5 p-4 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shrink-0 h-full">
             
-            <div class="flex items-center justify-between mb-6 lg:hidden">
+            <div class="flex items-center justify-between mb-4 lg:hidden">
                 <h2 class="font-bold text-white text-lg">Categorias</h2>
                 <button id="closeSidebar" class="text-gray-400 hover:text-white p-2 rounded-xl bg-dark-900 border border-white/5">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
-            <div class="bg-dark-900/60 backdrop-blur-md rounded-3xl p-4 border border-white/5 shadow-xl flex-1 flex flex-col">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 px-3 mb-3">Menu de Categorias</h3>
-                <div id="categoryList" class="space-y-1.5 overflow-y-auto pr-1 flex-1 custom-scrollbar">
+            <div class="bg-dark-950/80 backdrop-blur-md rounded-2xl p-3 border border-white/5 shadow-xl flex-1 flex flex-col overflow-hidden">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 px-3 mb-2">Menu de Categorias</h3>
+                <!-- Container com scroll próprio apenas para as categorias -->
+                <div id="categoryList" class="space-y-1 overflow-y-auto pr-1 flex-1 custom-scrollbar">
                     <!-- Gerado via JavaScript -->
                 </div>
             </div>
         </aside>
 
-        <!-- Área de Conteúdo de Mensagens -->
-        <main class="lg:col-span-3 flex flex-col space-y-6">
+        <!-- Área de Conteúdo de Mensagens (Com rolagem independente) -->
+        <main class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6 custom-scrollbar bg-dark-950">
             
-            <!-- Cabeçalho da Seção Ativa -->
-            <div class="bg-dark-900/40 backdrop-blur-md rounded-3xl p-6 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
-                <div>
-                    <h2 id="activeCategoryTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight">Todas as Mensagens</h2>
-                    <p id="activeCategorySubtitle" class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
-                        <i class="fa-solid fa-layer-group text-brand-light"></i> Visão geral de todas as respostas disponíveis
-                    </p>
+            <div class="max-w-7xl mx-auto space-y-6 w-full">
+                <!-- Cabeçalho da Seção Ativa -->
+                <div class="bg-dark-900/40 backdrop-blur-md rounded-3xl p-6 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+                    <div>
+                        <h2 id="activeCategoryTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight">Todas as Mensagens</h2>
+                        <p id="activeCategorySubtitle" class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-brand-light"></i> Visão geral de todas as respostas disponíveis
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-dark-900/80 px-4 py-2 rounded-2xl border border-white/5 self-start sm:self-auto shadow-inner">
+                        <span class="text-xs text-gray-400">Total:</span>
+                        <span id="messageCount" class="text-sm font-bold text-brand-light">0</span>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-2 bg-dark-900/80 px-4 py-2 rounded-2xl border border-white/5 self-start sm:self-auto shadow-inner">
-                    <span class="text-xs text-gray-400">Total:</span>
-                    <span id="messageCount" class="text-sm font-bold text-brand-light">0</span>
-                </div>
-            </div>
 
-            <!-- Grid de Cards de Mensagens -->
-            <div id="messagesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- Gerado via JavaScript -->
-            </div>
-
-            <!-- Estado Vazio (Nenhum resultado encontrado) -->
-            <div id="noResults" class="hidden flex-col items-center justify-center py-20 px-4 text-center bg-dark-900/30 backdrop-blur-md rounded-3xl border border-white/5">
-                <div class="w-16 h-16 rounded-3xl bg-dark-900 flex items-center justify-center text-gray-500 mb-4 text-2xl border border-white/5 shadow-inner">
-                    <i class="fa-solid fa-folder-open"></i>
+                <!-- Grid de Cards de Mensagens -->
+                <div id="messagesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5">
+                    <!-- Gerado via JavaScript -->
                 </div>
-                <h3 class="text-lg font-bold text-white mb-1">Nenhuma mensagem encontrada</h3>
-                <p class="text-sm text-gray-400 max-w-sm">Tente pesquisar por outro termo ou selecione outra categoria no menu lateral.</p>
+
+                <!-- Estado Vazio -->
+                <div id="noResults" class="hidden flex-col items-center justify-center py-20 px-4 text-center bg-dark-900/30 backdrop-blur-md rounded-3xl border border-white/5">
+                    <div class="w-16 h-16 rounded-3xl bg-dark-900 flex items-center justify-center text-gray-500 mb-4 text-2xl border border-white/5 shadow-inner">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Nenhuma mensagem encontrada</h3>
+                    <p class="text-sm text-gray-400 max-w-sm">Tente pesquisar por outro termo ou selecione outra categoria no menu lateral.</p>
+                </div>
             </div>
 
         </main>
