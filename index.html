@@ -200,130 +200,130 @@
 
     <!-- Script Completo -->
     <script>
-        const categoriesData = [
-            {
-                id: 'bom-dia',
-                name: 'BOM DIA / BOA TARDE / BOA NOITE',
-                icon: 'fa-sun',
-                messages: [
-                    { title: 'Bom dia com foto de equipamentos', text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?' },
-                    { title: 'Boa tarde com foto de equipamentos', text: 'Boa tarde, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?' },
-                    { title: 'Boa tarde para retomar atendimento', text: 'Boa tarde, tudo bem? Podemos retomar o atendimento agora? Fico à disposição.' },
-                    { title: 'Boa noite com foto de equipamentos', text: 'Boa noite, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível. Poderia me enviar uma foto dos equipamentos?' }
-                ]
-            },
-            {
-                id: 'comprovante',
-                name: 'COMPROVANTE',
-                icon: 'fa-receipt',
-                messages: [
-                    { title: 'Comprovante - Manhã', text: 'Bom dia! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' },
-                    { title: 'Comprovante - Tarde', text: 'Boa tarde! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' },
-                    { title: 'Comprovante - Noite', text: 'Boa noite! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' }
-                ]
-            },
-            {
-                id: 'prazos',
-                name: 'PRAZOS',
-                icon: 'fa-clock',
-                messages: [
-                    { title: 'Prazo 48h - Sem acesso à internet (Prioridade)', text: 'Prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está sem acesso à internet no momento, o que impacta diretamente seu uso do serviço. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.' },
-                    { title: 'Prazo 48h - Instabilidade (Prioridade)', text: 'O prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está enfrentando instabilidade no serviço, o que impacta diretamente seu uso da internet. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.' },
-                    { title: 'Encaminhado para técnicos sem horário exato', text: 'Assim que possível, os técnicos irão até o local, ok? No momento, não tenho acesso à agenda deles para verificar os horários disponíveis, mas já deixei registrado para que o atendimento seja feito com a maior agilidade possível.' }
-                ]
-            },
-            {
-                id: 'agendamentos',
-                name: 'AGENDAMENTOS',
-                icon: 'fa-calendar-days',
-                messages: [
-                    { title: 'Abertura de agendamento (Feminino)', text: 'Estarei abrindo agora a solicitação de agendamento para a senhora, tudo certo?' },
-                    { title: 'Abertura de agendamento (Masculino)', text: 'Estarei abrindo agora a solicitação de agendamento para o senhor, tudo certo?' },
-                    { title: 'Transferência para Controladoria', text: 'Vou estar transferindo você para o setor da Controladoria, assim podem verificar um horário para a visita.' }
-                ]
-            },
-            {
-                id: 'reajuste',
-                name: 'REAJUSTE',
-                icon: 'fa-percent',
-                messages: [
-                    { title: 'Explicação sobre reajuste e custos', text: 'Devido ao aumento bastante significativo nos custos de prestação de serviços e produtos que vem acontecendo em nosso setor, e para continuar mantendo a qualidade na prestação de serviço da sua internet, estamos atualizando os planos que por vários anos não tiveram seus respectivos reajustes.' },
-                    { title: 'Alternativas e planos melhores', text: 'Gostaríamos que compreendesse nosso desejo de não ter que estar aplicando as taxas de correções monetárias, a qual seguramos até o último momento. Estamos à disposição até para planos maiores ou melhores, com telefone fixo, telefone móvel 5G e Aplicativos de TV.' },
-                    { title: 'Manutenção de parceria antiga', text: 'Se precisar é só me falar que faço o melhor que puder para manter essa parceria de muito tempo.' }
-                ]
-            },
-            {
-                id: 'finalizacao',
-                name: 'FINALIZAÇÃO',
-                icon: 'fa-circle-check',
-                messages: [
-                    { title: 'Encerramento com pedido de nota (Semana)', text: 'Muito obrigado pelo seu contato! Desejo a você uma ótima semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀' },
-                    { title: 'Encerramento com pedido de nota (Fim de semana)', text: 'Muito obrigado pelo seu contato! Desejo a você um ótimo final de semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀' },
-                    { title: 'Aviso de término de expediente', text: 'Estou encerrando meu expediente no momento. Retornarei amanhã a partir das 09:00 horas (Horário de Brasília) para dar continuidade ao seu atendimento. Desejo-lhe uma ótima noite e até logo! 😃' }
-                ]
-            },
-            {
-                id: 'troca-senha',
-                name: 'TROCA DE SENHA',
-                icon: 'fa-key',
-                messages: [
-                    { title: 'Aviso sobre desconexão dos dispositivos', text: 'Informo que, ao realizar a troca, todos os dispositivos conectados à rede serão desconectados. Após essa alteração, será necessário reconectar utilizando a nova senha.' },
-                    { title: 'Aviso de taxa por troca em menos de 60 dias', text: 'Informamos que, como a troca de senha da sua rede foi realizada há menos de 60 dias (xx/xx/xx), haverá um custo de R$ 15,00 para efetuar uma nova alteração. Se desejar prosseguir, podemos realizar a alteração imediatamente.' }
-                ]
-            },
-            {
-                id: 'rompimento',
-                name: 'ROMPIMENTO',
-                icon: 'fa-triangle-exclamation',
-                messages: [
-                    { title: 'Aviso formal de rompimento de fibra', text: 'Prezado(a) {{nome_cliente}},\n\nDevido a um rompimento em um dos nossos cabos principais próximo à sua região, sua conexão pode apresentar instabilidade ou interrupção.\n\nNossa equipe técnica já está ciente da situação e atuando na manutenção para a normalização dos serviços. Assim que o reparo for concluído, sua internet voltará a funcionar normalmente.\n\nAgradecemos a sua paciência e compreensão.\n\nAtenciosamente,\nEquipe UltraTelecom' }
-                ]
-            },
-            {
-                id: 'tv-box',
-                name: 'TV BOX / IPTV',
-                icon: 'fa-tv',
-                messages: [
-                    { title: 'Explicação sobre IPTV e teste alternativo', text: 'Infelizmente não podemos prestar suporte para o seu equipamento de canais, pois o qual utiliza sinais não-oficiais de transmissão, onde podem ocorrer travamentos por conta do servidor da IPTV, e não um problema propriamente da internet. O senhor conseguiria realizar o teste em um serviço como YouTube ou Netflix, por gentileza?' },
-                    { title: 'Detalhes técnicos sobre servidores IPTV', text: 'O IPTV é como um aplicativo que pega sinais de TV de lugares que não são oficiais. Como ele não é um serviço autorizado, esses sinais não vêm de forma direta e segura. Eles ficam alternando de servidores espalhados pelo mundo. Por isso, quando chegam na sua casa, podem travar, ficar lentos ou até sair do ar. Diferente de uma TV oficial, que tem servidores fixos e estáveis, o IPTV sempre vai ter esse risco de instabilidade.' }
-                ]
-            },
-            {
-                id: 'celular-teste',
-                name: 'CELULAR / TESTE DE VELOCIDADE',
-                icon: 'fa-gauge-high',
-                messages: [
-                    { title: 'Diferença entre Wi-Fi e Cabo no Teste', text: 'Para testar corretamente a velocidade da internet, o ideal é realizar o teste em um computador conectado por cabo de rede.\n\nTestes feitos via Wi-Fi (celular ou notebook) podem sofrer variações, pois o sinal sem fio é influenciado por distância, paredes e interferências.\n\nO teste cabeado mostra a velocidade real entregue no aparelho que está sendo testado, enquanto no Wi-Fi o resultado pode ser inferior mesmo com a conexão normal.' }
-                ]
-            },
-            {
-                id: 'sem-interacao',
-                name: 'SEM INTERAÇÃO',
-                icon: 'fa-comment-slash',
-                messages: [
-                    { title: 'Encerramento por inatividade', text: 'Como não houve seguimento, estamos finalizando este protocolo. Se precisar de ajuda ainda, pode nos contatar, que estaremos sempre à disposição. Tenha uma ótima semana!' },
-                    { title: 'Aviso aos 30 minutos', text: 'Olá! Somente para avisar que estou no aguardo do seu retorno. Assim que conseguir realizar o procedimento, me avisa, tá bem?' },
-                    { title: 'Aviso à 1h30', text: 'Olá! Sua demanda já foi solucionada? Qualquer coisa, me avisa. Estou aqui à disposição, ok?' },
-                    { title: 'Aviso às 3 horas (Disponibilidade)', text: 'Pode me avisar o horário em que vai estar disponível para conversarmos? Ficarei no aguardo.' }
-                ]
-            },
-            {
-                id: 'speedtest',
-                name: 'SPEEDTEST',
-                icon: 'fa-network-wired',
-                messages: [
-                    { title: 'Instruções para acessar e printar Speedtest', text: 'Acesse o site https://www.speedtest.net/pt e clique no botão "Iniciar". Quando o teste terminar, tire um print do resultado e me envie.' }
-                ]
-            },
-            {
-                id: 'conectividade',
-                name: 'CONECTIVIDADE',
-                icon: 'fa-signal',
-                messages: [
-                    { title: 'Diferença entre 2.4 GHz e 5 GHz', text: '• 2.4 GHz: tem alcance maior e atravessa paredes melhor, mas a velocidade é menor e sofre mais interferências.\n• 5 GHz: tem velocidade maior, ideal para vídeos e jogos online, mas o alcance é menor e perde força com obstáculos.' }
-                ]
-            }
-        ];
+      const categoriesData = [
+    {
+        id: 'bom-dia',
+        name: 'BOM DIA / BOA TARDE / BOA NOITE',
+        icon: 'fa-sun',
+        messages: [
+            { title: 'Bom dia ', text: 'Bom dia, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.' },
+            { title: 'Boa tarde ', text: 'Boa tarde, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.' },
+            { title: 'Boa tarde para retomar atendimento', text: 'Boa tarde, tudo bem? Podemos retomar o atendimento agora? Fico à disposição.' },
+            { title: 'Boa noite', text: 'Boa noite, tudo bem? Sou Alysson e estarei à disposição para atendê-lo da melhor forma possível.' }
+        ]
+    },
+    {
+        id: 'comprovante',
+        name: 'COMPROVANTE',
+        icon: 'fa-receipt',
+        messages: [
+            { title: 'Comprovante - Manhã', text: 'Bom dia! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' },
+            { title: 'Comprovante - Tarde', text: 'Boa tarde! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' },
+            { title: 'Comprovante - Noite', text: 'Boa noite! Obrigado pelo comprovante. Caso precise de alguma ajuda, estaremos à disposição. Tenha uma ótima semana!!' }
+        ]
+    },
+    {
+        id: 'prazos',
+        name: 'PRAZOS',
+        icon: 'fa-clock',
+        messages: [
+            { title: 'Prazo 48h - Sem acesso à internet (Prioridade)', text: 'Prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está sem acesso à internet no momento, o que impacta diretamente seu uso do serviço. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.' },
+            { title: 'Prazo 48h - Instabilidade (Prioridade)', text: 'O prazo padrão para a visita é de até 48 horas. No entanto, entendemos que você está enfrentando instabilidade no serviço, o que impacta diretamente seu uso da internet. Por isso, sua solicitação receberá prioridade especial para que possamos resolver o quanto antes.' },
+            { title: 'Encaminhado para técnicos sem horário exato', text: 'Assim que possível, os técnicos irão até o local, ok? No momento, não tenho acesso à agenda deles para verificar os horários disponíveis, mas já deixei registrado para que o atendimento seja feito com a maior agilidade possível.' }
+        ]
+    },
+    {
+        id: 'agendamentos',
+        name: 'AGENDAMENTOS',
+        icon: 'fa-calendar-days',
+        messages: [
+            { title: 'Abertura de agendamento (Feminino)', text: 'Estarei abrindo agora a solicitação de agendamento para a senhora, tudo certo?' },
+            { title: 'Abertura de agendamento (Masculino)', text: 'Estarei abrindo agora a solicitação de agendamento para o senhor, tudo certo?' },
+            { title: 'Transferência para Controladoria', text: 'Vou estar transferindo você para o setor da Controladoria, assim podem verificar um horário para a visita.' }
+        ]
+    },
+    {
+        id: 'reajuste',
+        name: 'REAJUSTE',
+        icon: 'fa-percent',
+        messages: [
+            { title: 'Explicação sobre reajuste e custos', text: 'Devido ao aumento bastante significativo nos custos de prestação de serviços e produtos que vem acontecendo em nosso setor, e para continuar mantendo a qualidade na prestação de serviço da sua internet, estamos atualizando os planos que por vários anos não tiveram seus respectivos reajustes.' },
+            { title: 'Alternativas e planos melhores', text: 'Gostaríamos que compreendesse nosso desejo de não ter que estar aplicando as taxas de correções monetárias, a qual seguramos até o último momento. Estamos à disposição até para planos maiores ou melhores, com telefone fixo, telefone móvel 5G e Aplicativos de TV.' },
+            { title: 'Manutenção de parceria antiga', text: 'Se precisar é só me falar que faço o melhor que puder para manter essa parceria de muito tempo.' }
+        ]
+    },
+    {
+        id: 'finalizacao',
+        name: 'FINALIZAÇÃO',
+        icon: 'fa-circle-check',
+        messages: [
+            { title: 'Encerramento com pedido de nota (Semana)', text: 'Muito obrigado pelo seu contato! Desejo a você uma ótima semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀' },
+            { title: 'Encerramento com pedido de nota (Fim de semana)', text: 'Muito obrigado pelo seu contato! Desejo a você um ótimo final de semana. Se puder me avaliar com uma nota EXCELENTE, ficarei imensamente grato!! 😀' },
+            { title: 'Aviso de término de expediente', text: 'Estou encerrando meu expediente no momento. Retornarei amanhã a partir das 09:00 horas (Horário de Brasília) para dar continuidade ao seu atendimento. Desejo-lhe uma ótima noite e até logo! 😃' }
+        ]
+    },
+    {
+        id: 'troca-senha',
+        name: 'TROCA DE SENHA',
+        icon: 'fa-key',
+        messages: [
+            { title: 'Aviso sobre desconexão dos dispositivos', text: 'Informo que, ao realizar a troca, todos os dispositivos conectados à rede serão desconectados. Após essa alteração, será necessário reconectar utilizando a nova senha.' },
+            { title: 'Aviso de taxa por troca em menos de 60 dias', text: 'Informamos que, como a troca de senha da sua rede foi realizada há menos de 60 dias (xx/xx/xx), haverá um custo de R$ 15,00 para efetuar uma nova alteração. Se desejar prosseguir, podemos realizar a alteração imediatamente.' }
+        ]
+    },
+    {
+        id: 'rompimento',
+        name: 'ROMPIMENTO',
+        icon: 'fa-triangle-exclamation',
+        messages: [
+            { title: 'Aviso formal de rompimento de fibra', text: 'Prezado(a) {{nome_cliente}},\n\nDevido a um rompimento em um dos nossos cabos principais próximo à sua região, sua conexão pode apresentar instabilidade ou interrupção.\n\nNossa equipe técnica já está ciente da situação e atuando na manutenção para a normalização dos serviços. Assim que o reparo for concluído, sua internet voltará a funcionar normalmente.\n\nAgradecemos a sua paciência e compreensão.\n\nAtenciosamente,\nEquipe UltraTelecom' }
+        ]
+    },
+    {
+        id: 'tv-box',
+        name: 'TV BOX / IPTV',
+        icon: 'fa-tv',
+        messages: [
+            { title: 'Explicação sobre IPTV e teste alternativo', text: 'Infelizmente não podemos prestar suporte para o seu equipamento de canais, pois o qual utiliza sinais não-oficiais de transmissão, onde podem ocorrer travamentos por conta do servidor da IPTV, e não um problema propriamente da internet. O senhor conseguiria realizar o teste em um serviço como YouTube ou Netflix, por gentileza?' },
+            { title: 'Detalhes técnicos sobre servidores IPTV', text: 'O IPTV é como um aplicativo que pega sinais de TV de lugares que não são oficiais. Como ele não é um serviço autorizado, esses sinais não vêm de forma direta e segura. Eles ficam alternando de servidores espalhados pelo mundo. Por isso, quando chegam na sua casa, podem travar, ficar lentos ou até sair do ar. Diferente de uma TV oficial, que tem servidores fixos e estáveis, o IPTV sempre vai ter esse risco de instabilidade.' }
+        ]
+    },
+    {
+        id: 'celular-teste',
+        name: 'CELULAR / TESTE DE VELOCIDADE',
+        icon: 'fa-gauge-high',
+        messages: [
+            { title: 'Diferença entre Wi-Fi e Cabo no Teste', text: 'Para testar corretamente a velocidade da internet, o ideal é realizar o teste em um computador conectado por cabo de rede.\n\nTestes feitos via Wi-Fi (celular ou notebook) podem sofrer variações, pois o sinal sem fio é influenciado por distância, paredes e interferências.\n\nO teste cabeado mostra a velocidade real entregue no aparelho que está sendo testado, enquanto no Wi-Fi o resultado pode ser inferior mesmo com a conexão normal.' }
+        ]
+    },
+    {
+        id: 'sem-interacao',
+        name: 'SEM INTERAÇÃO',
+        icon: 'fa-comment-slash',
+        messages: [
+            { title: 'Encerramento por inatividade', text: 'Como não houve seguimento, estamos finalizando este protocolo. Se precisar de ajuda ainda, pode nos contatar, que estaremos sempre à disposição. Tenha uma ótima semana!' },
+            { title: 'Aviso aos 30 minutos', text: 'Olá! Somente para avisar que estou no aguardo do seu retorno. Assim que conseguir realizar o procedimento, me avisa, tá bem?' },
+            { title: 'Aviso à 1h30', text: 'Olá! Sua demanda já foi solucionada? Qualquer coisa, me avisa. Estou aqui à disposição, ok?' },
+            { title: 'Aviso às 3 horas (Disponibilidade)', text: 'Pode me avisar o horário em que vai estar disponível para conversarmos? Ficarei no aguardo.' }
+        ]
+    },
+    {
+        id: 'speedtest',
+        name: 'SPEEDTEST',
+        icon: 'fa-network-wired',
+        messages: [
+            { title: 'Instruções para acessar e printar Speedtest', text: 'Acesse o site https://www.speedtest.net/pt e clique no botão "Iniciar". Quando o teste terminar, tire um print do resultado e me envie.' }
+        ]
+    },
+    {
+        id: 'conectividade',
+        name: 'CONECTIVIDADE',
+        icon: 'fa-signal',
+        messages: [
+            { title: 'Diferença entre 2.4 GHz e 5 GHz', text: '• 2.4 GHz: tem alcance maior e atravessa paredes melhor, mas a velocidade é menor e sofre mais interferências.\n• 5 GHz: tem velocidade maior, ideal para vídeos e jogos online, mas o alcance é menor e perde força com obstáculos.' }
+        ]
+    }
+];
 
         const EXTERNAL_APP_URL = 'https://agendamentos-sobreaviso.vercel.app/';
 
